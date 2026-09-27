@@ -2,7 +2,8 @@ import { mvpCopy as t } from "../constants/copy";
 
 export type Answers = Record<string, string[]>;
 export type Role = "admin" | "reviewer" | "reader";
-export type FieldSpec = { id: string; name: string; type: "single" | "multi" | "text"; options: string[]; required: boolean; visible: boolean; readOnly: boolean; copyable: boolean };
+export type FieldType = "single" | "multi" | "text" | "longText" | "date" | "number" | "boolean";
+export type FieldSpec = { id: string; name: string; type: FieldType; options: string[]; required: boolean; visible: boolean; readOnly: boolean; copyable: boolean };
 export type ReviewEvent = { at: string; actor: string; before: Answers; after: Answers };
 export type Doc = { id: string; name: string; type: string; source: string; family: string; parent: string; thread: string; similar: string; language: string; date: string; content: string; state: "ready" | "staged" | "failed"; batch: string; duplicate: string; version: number; values: Answers; history: ReviewEvent[]; fixture: boolean };
 export type Condition = { field: "source" | "type" | "name" | "reviewed"; op: "contains" | "equals"; value: string };
@@ -21,7 +22,7 @@ export const defaultFields = (): FieldSpec[] => [
   { id: "responsive", name: t.review.responsive, type: "single", options: [t.answers.relevant, t.answers.irrelevant], required: true, visible: true, readOnly: false, copyable: true },
   { id: "confidential", name: t.review.confidential, type: "single", options: [t.answers.no, t.answers.yes], required: true, visible: true, readOnly: false, copyable: false },
   { id: "issues", name: t.review.issues, type: "multi", options: [...t.seed.issues], required: false, visible: true, readOnly: false, copyable: true },
-  { id: "notes", name: t.review.notes, type: "text", options: [], required: false, visible: true, readOnly: false, copyable: false },
+  { id: "notes", name: t.review.notes, type: "longText", options: [], required: false, visible: true, readOnly: false, copyable: false },
 ];
 export function makeProject(name: string, client: string, matter: string): Project {
   const adminId=uid();
@@ -46,7 +47,7 @@ export function validStore(value: unknown): value is Store {
   try {
     return new Set(s.projects.map(p=>p.id)).size===s.projects.length&&s.projects.every(p=>strings(p,["id","name","client","matter","adminId","form","indexedAt","analysisAt"])&&
       Array.isArray(p.docs)&&p.docs.every(validDoc)&&new Set(p.docs.map(d=>d.id)).size===p.docs.length&&
-      Array.isArray(p.fields)&&p.fields.every(f=>strings(f,["id","name"])&&["single","multi","text"].includes(f.type)&&Array.isArray(f.options)&&f.options.every(o=>typeof o==="string")&&[f.required,f.visible,f.readOnly,f.copyable].every(b=>typeof b==="boolean"))&&new Set(p.fields.map(f=>f.id)).size===p.fields.length&&["responsive","confidential"].every(id=>p.fields.some(f=>f.id===id&&f.required&&f.visible&&!f.readOnly))&&
+      Array.isArray(p.fields)&&p.fields.every(f=>strings(f,["id","name"])&&["single","multi","text","longText","date","number","boolean"].includes(f.type)&&Array.isArray(f.options)&&f.options.every(o=>typeof o==="string")&&[f.required,f.visible,f.readOnly,f.copyable].every(b=>typeof b==="boolean"))&&new Set(p.fields.map(f=>f.id)).size===p.fields.length&&["responsive","confidential"].every(id=>p.fields.some(f=>f.id===id&&f.required&&f.visible&&!f.readOnly))&&
       Array.isArray(p.members)&&p.members.every(m=>strings(m,["id","name","email"])&&["admin","reviewer","reader"].includes(m.role)&&typeof m.active==="boolean")&&p.members.some(m=>m.id===p.adminId&&m.active&&m.role==="admin")&&
       Array.isArray(p.searches)&&p.searches.every(x=>strings(x,["id","name"])&&strings(x.query,["text","folder","from","to"])&&typeof x.query.family==="boolean"&&["and","or"].includes(x.query.logic)&&Array.isArray(x.query.conditions)&&x.query.conditions.every(c=>strings(c,["value"])&&["name","type","source","reviewed"].includes(c.field)&&["equals","contains"].includes(c.op)))&&
       Array.isArray(p.tasks)&&p.tasks.every(x=>strings(x,["id","at","detail"])&&x.kind in t.tasks&&["done","error"].includes(x.state)&&Number.isFinite(x.count))&&

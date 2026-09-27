@@ -3,7 +3,7 @@ export const copy = {
     title: "FACT · MVP 工作台（M0 + M1）",
     prototype: "交互原型 / Interactive prototype",
     synthetic: "演示数据 / Synthetic data",
-    version: "v0.7 · 2026-09-27",
+    version: "v0.8 · 2026-09-27",
   },
   brand: {
     mark: "T",
@@ -844,7 +844,7 @@ export type PageId = (typeof copy.navigation)[number]["id"];
 export const mvpCopy = {
   brand: "FACT", edition: "MVP · M0 + M1", title: "证据审阅工作台",
   prototype: "交互原型 · 数据仅保存在当前浏览器，未接入生产服务",
-  header: { search: "搜索文档", scope: "本版范围", notifications: "通知", help: "帮助", user: "林然", menu: "打开菜单", synthetic: "演示数据", version: "v0.7 · 2026-09-27", demoOnly: "仅用于范围和流程讨论" },
+  header: { search: "搜索文档", scope: "本版范围", notifications: "通知", help: "帮助", user: "林然", menu: "打开菜单", synthetic: "演示数据", version: "v0.8 · 2026-09-27", demoOnly: "仅用于范围和流程讨论" },
   scope: "本版范围", scopeTitle: "M0 / M1 功能范围", scopeHint: "40 项 M0 + 18 项 M1。M2 与单列“条件必要”功能不在本版入口中；范围用于原型讨论，不代表后端已交付。",
   pages: [
     { id: "home", name: "项目概览", desc: "从材料导入到交付，用同一批文档贯穿整个流程。" },
@@ -856,7 +856,7 @@ export const mvpCopy = {
     { id: "tasks", name: "任务与记录", desc: "查看每次操作的范围、结果和异常。" },
     { id: "settings", name: "项目与配置", desc: "维护项目成员、固定审阅表单和内部处理规则。" },
   ],
-  settingsTabs: ["项目资料", "成员与角色", "审阅字段与表单", "处理规则", "备份与恢复"],
+  settingsTabs: ["项目资料", "成员与角色", "字段与选项", "审阅表单", "处理规则", "备份与恢复"],
   roles: { admin: "管理员", reviewer: "审阅员", reader: "只读成员" },
   states: { ready: "可审阅", failed: "处理失败", staged: "待发布" },
   answers: { pending: "未审阅", relevant: "相关", irrelevant: "不相关", yes: "保密", no: "非保密" },
@@ -868,7 +868,7 @@ export const mvpCopy = {
   review: { zoomLevels: ["90%", "100%", "120%"], responsive: "相关性", confidential: "保密性", issues: "议题", notes: "备注", saveNext: "保存并下一份", previous: "沿用上一份标注", noPrevious: "没有可沿用的上一份记录。", previousApplied: "已填入允许复制的字段，请核对后保存。", family: "关联文档", history: "审阅修改历史", before: "修改前", after: "修改后", noDoc: "请先从文档列表打开一份文档。", back: "返回结果列表", find: "文档内查找", match: "处命中", zoom: "缩放", end: "已保存，当前范围已到最后一份。", dirty: "有未保存的修改。离开后将丢失，是否继续？", conflict: "另一窗口已修改数据。请刷新后重试，避免覆盖。", loading: "文档不可用或不属于当前项目。", downloadText: "下载当前文本", copyHint: "只复制表单配置中允许沿用的字段。" },
   analytics: { index: "默认全文索引", refresh: "更新索引", last: "最近更新时间", run: "运行示例分析", sample: "邮件链 / 近似分组为预设样本结果，不对上传文件运行真实分析算法。", thread: "邮件链", similar: "近似文档组", language: "语言分布", group: "分组", show: "查看组内文档", important: "重点邮件", noGroup: "未分组", other: "用户文本（未分析）", languages: { zh: "中文", en: "英文", unknown: "未分析" }, criteria: "范围：本项目已发布文档；字段：提取文本；维护由系统承担。" },
   export: { draft: "本次交付", choose: "选择交付范围", all: "全部已审阅文档", selected: "从列表选中的文档", freeze: "冻结本次文档集合", frozen: "已冻结", check: "交付前检查", build: "制作并下载", meta: "元数据 CSV", text: "提取文本 TXT", hint: "本版可生成真实 ZIP 示例交付包（文本、元数据及 manifest）。不输出原件、Bates、PDF、load file 或遮盖结果。", blocked: "交付被阻断：范围为空、含未审阅/保密文档或未发布文档。请调整范围。", changed: "冻结后文档内容或标注发生变化，请重新冻结并检查。", passed: "检查通过，可以制作。", format: "至少选择一种输出。", history: "交付历史", version: "交付版本", again: "重新制作", empty: "尚未冻结文档范围。", manifest: "manifest.json", filename: "FACT-MVP", formatNote: "prototype-text-package; no native files, images, redactions or load files", snapshotNote: "下载历史版本保留当时的文档和标注；重新制作需重新检查当前版本。" },
-  settings: { project: "工作区名称", client: "客户", matter: "事项", newProject: "新建工作区", admin: "项目管理员", member: "成员姓名", email: "邮箱", role: "角色组", newMember: "添加成员", lastAdmin: "至少保留一名启用的管理员。", form: "审阅表单名称", addField: "新增议题字段", label: "字段名称", options: "选项（逗号分隔）", required: "必填", visible: "显示", readOnly: "只读", copyable: "允许沿用", preview: "预览表单", fieldHint: "仅保留固定排列的表单及一层选项。项目配置直接应用到审阅页；停用选项保留历史值。", fieldType: "字段类型", choice: "多选", text: "文本", single: "单选", rule: "处理方案", ruleValue: "基础文本处理", timezone: "时区", timezoneValue: "Asia/Shanghai", dedup: "去重方式", parents: "保留直接父子关系", ruleHint: "处理规则由内部维护，本版展示有效规则；不提供规则编辑器。", backup: "下载项目备份", restore: "导入项目备份", restoreConfirm: "恢复将替换当前浏览器的全部 MVP 数据，是否继续？", invalidBackup: "备份结构无效，未修改现有数据。", restored: "已恢复备份。", backupHint: "备份包含本浏览器的全部项目、标注、审阅配置与任务。真实服务端备份、认证和权限仍需开发。", audit: "关键操作记录", active: "启用状态", protect: "相关性、保密性字段是交付检查的依据，保留显示与可编辑；其他字段可设置只读和隐藏。", adminHint: "三种预设角色组，无逐对象权限矩阵、模板复制或自由布局。" },
+  settings: { project: "工作区名称", client: "客户", matter: "事项", newProject: "新建工作区", admin: "项目管理员", member: "成员姓名", email: "邮箱", role: "角色组", newMember: "添加成员", lastAdmin: "至少保留一名启用的管理员。", form: "审阅表单名称", addField: "新增字段", label: "字段名称", options: "选项（逗号分隔）", required: "必填", visible: "显示在审阅页", readOnly: "只读", copyable: "允许沿用", showInReview: "显示在审阅页", editableInReview: "审阅时可编辑", carryForward: "允许从上一份带入", preview: "预览表单", fieldPageHint: "管理员在此维护字段名称、字段类型和选项内容；这些定义可被审阅表单使用。", reviewPageHint: "管理员在此决定字段是否显示、是否可编辑，以及点击“沿用上一份”时是否带入。", fieldType: "字段类型", fieldTypeOptions: [{ id: "text", label: "短文本" }, { id: "longText", label: "长文本" }, { id: "single", label: "单选" }, { id: "multi", label: "多选" }, { id: "date", label: "日期" }, { id: "number", label: "数字" }, { id: "boolean", label: "是 / 否" }] as const, fieldOptions: "选项内容", noOptions: "此类型不需要选项", text: "文本字段", single: "单选", multi: "多选", action: "操作", coreFieldHint: "相关性和保密性是交付检查字段，必须保留、显示并允许审阅员填写。", rule: "处理方案", ruleValue: "基础文本处理", timezone: "时区", timezoneValue: "Asia/Shanghai", dedup: "去重方式", parents: "保留直接父子关系", ruleHint: "处理规则由内部维护，本版展示有效规则；不提供规则编辑器。", backup: "下载项目备份", restore: "导入项目备份", restoreConfirm: "恢复将替换当前浏览器的全部 MVP 数据，是否继续？", invalidBackup: "备份结构无效，未修改现有数据。", restored: "已恢复备份。", backupHint: "备份包含本浏览器的全部项目、标注、审阅配置与任务。真实服务端备份、认证和权限仍需开发。", audit: "关键操作记录", active: "启用状态", protect: "相关性、保密性字段是交付检查的依据；其他字段可按项目需要配置。", adminHint: "三种预设角色组，无逐对象权限矩阵、模板复制或自由布局。" },
   audit: { project: "项目资料保存", member: "成员更新", fields: "字段与表单更新", review: "审阅保存", bulk: "批量标注", search: "保存搜索", export: "制作交付", restore: "备份恢复" },
   seed: { project: "马克欺诈项目", client: "Close AI Ltd.", matter: "高管马克欺诈调查", project2: "供应商合同项目", client2: "示例采购公司", matter2: "年度采购审查", admin: "林然", email: "linran@example.test", reviewer: "周宁", reviewerEmail: "zhouning@example.test", form: "基础审阅表单", issues: ["资金流向", "合同异常", "信息披露"], date: "2026-09-20", threadA: "投资款往来", similarA: "投资安排附件", threadB: "供应商沟通", langZh: "zh", langEn: "en", docs: [
     { id: "DOC-0001", name: "关于投资款安排.eml", type: "Email", source: "邮箱 / 马克", family: "F-01", parent: "", thread: "投资款往来", similar: "", language: "zh", date: "2026-09-18", content: "发件人：马克\n收件人：林然\n主题：关于投资款安排\n\n请核对本季度的投资款和收款账户。附件中有合同草案。投资项目尚待董事会审批，请勿提前披露。\n\nMark: the investment agreement requires approval." },
