@@ -1,9 +1,9 @@
 export const copy = {
   meta: {
-    title: "证据审阅平台原型 | Evidence Review Platform Prototype",
+    title: "FACT · MVP 工作台（M0 + M1）",
     prototype: "交互原型 / Interactive prototype",
     synthetic: "演示数据 / Synthetic data",
-    version: "v0.6 · 2026-09-23",
+    version: "v0.7 · 2026-09-27",
   },
   brand: {
     mark: "T",
@@ -839,3 +839,338 @@ export const copy = {
 } as const;
 
 export type PageId = (typeof copy.navigation)[number]["id"];
+
+
+export const mvpCopy = {
+  brand: "FACT", edition: "MVP · M0 + M1", title: "证据审阅工作台",
+  prototype: "交互原型 · 数据仅保存在当前浏览器，未接入生产服务",
+  header: { search: "搜索文档", scope: "本版范围", notifications: "通知", help: "帮助", user: "林然", menu: "打开菜单", synthetic: "演示数据", version: "v0.7 · 2026-09-27", demoOnly: "仅用于范围和流程讨论" },
+  scope: "本版范围", scopeTitle: "M0 / M1 功能范围", scopeHint: "40 项 M0 + 18 项 M1。M2 与单列“条件必要”功能不在本版入口中；范围用于原型讨论，不代表后端已交付。",
+  pages: [
+    { id: "home", name: "项目概览", desc: "从材料导入到交付，用同一批文档贯穿整个流程。" },
+    { id: "processing", name: "导入与处理", desc: "核对材料、处理例外，再发布到文档库。" },
+    { id: "documents", name: "文档与搜索", desc: "搜索、筛选和保存查询，按实际结果进入审阅。" },
+    { id: "review", name: "文档审阅", desc: "阅读正文、记录判断，并保留修改历史。" },
+    { id: "analytics", name: "索引与分析", desc: "查看索引覆盖，以及邮件链、近似文档和语言分析的示例结果。" },
+    { id: "production", name: "交付与下载", desc: "冻结本次交付范围，检查后生成可下载的文本及元数据包。" },
+    { id: "tasks", name: "任务与记录", desc: "查看每次操作的范围、结果和异常。" },
+    { id: "settings", name: "项目与配置", desc: "维护项目成员、固定审阅表单和内部处理规则。" },
+  ],
+  settingsTabs: ["项目资料", "成员与角色", "审阅字段与表单", "处理规则", "备份与恢复"],
+  roles: { admin: "管理员", reviewer: "审阅员", reader: "只读成员" },
+  states: { ready: "可审阅", failed: "处理失败", staged: "待发布" },
+  answers: { pending: "未审阅", relevant: "相关", irrelevant: "不相关", yes: "保密", no: "非保密" },
+  tasks: { import: "导入", publish: "发布", index: "索引更新", analysis: "示例分析", export: "交付制作", retry: "重试" },
+  all: "全部", none: "暂无记录", choose: "请选择", save: "保存", cancel: "取消", close: "关闭", edit: "编辑", create: "新建", name: "名称", status: "状态", action: "操作", source: "来源", date: "日期", type: "类型", document: "文档", id: "文档编号", file: "名称 / 主题", total: "文档总数", reviewed: "已审阅", indexed: "可搜索", failures: "处理失败", recent: "最近操作", time: "操作时间", actor: "操作人", detail: "详情", results: "结果", count: "数量", empty: "当前范围没有文档，请调整条件或先导入材料。", required: "请填写所有必填项。", duplicate: "名称或邮箱已存在，请使用不同值。", saved: "已保存到本浏览器。", storageError: "浏览器存储失败，本次操作没有保存。请先下载备份或减小导入量。", storageLoadError: "本地记录无法读取。为避免覆盖，已暂停写入；请先导出原记录或处理浏览器存储后刷新。", readonly: "当前角色不可执行此操作。", previewRole: "角色视角预览", roleHint: "仅模拟界面权限，不等同于真实账号登录或后端鉴权。", currentProject: "当前工作区", next: "下一页", prev: "上一页", page: "页", selected: "已选", clear: "清除", reset: "重置条件", open: "打开", yes: "是", no: "否", enabled: "启用", disabled: "停用", done: "完成", error: "失败", snapshot: "冻结范围", download: "下载", plus: "+", unknown: "未知", dash: "—",
+  home: { path: "开始本次审阅", steps: ["1. 导入材料", "2. 检索文档", "3. 审阅标注", "4. 检查交付"], hint: "概览数据与列表、审阅、交付同步；切换工作区后独立保存。" },
+  import: { fixture: "导入示例邮件包", local: "导入文本文件", inventory: "导入前盘点", submit: "开始导入", hint: "示例包用于演示邮件、附件、重复件和失败件。真实文件仅支持 UTF-8 .txt（每份不超过 2 MB）；Office、PST、OCR 等解析仍需后台接入。", preview: "盘点结果", originals: "原始材料", expanded: "展开文档", duplicate: "重复件", pending: "待发布", publish: "发布成功项", retry: "修复并重试", retryHint: "示例异常：模拟源文件已修复，重试后进入待发布。", failure: "示例损坏附件：内容提取失败，需修复后重试。", unsupported: "仅支持不超过 2 MB 的 UTF-8 .txt 文件。", empty: "未发现可读取的文本。", error: "文件读取失败。", batch: "导入批次", duplicateMark: "完全重复", parent: "直接父文档", already: "本项目已经导入此示例包；可使用真实文本继续体验。", indexed: "已发布文档可搜索；正文变化后索引状态同步更新。", fixedSource: "示例邮件包", textSource: "本地文本", reason: "异常原因", stagedHint: "待发布材料不会进入搜索或交付。", dedup: "仅标记重复，保留每次来源", inventoryHint: "示例中的原始材料与展开文档分别计数，附件不是额外上传文件。" },
+  search: { label: "全文搜索", placeholder: '关键词或 "完整短语"；可用 AND / OR / NOT', run: "运行搜索", field: "筛选字段", operator: "匹配方式", value: "筛选值", add: "添加条件", remove: "移除", logic: "条件组合", and: "全部满足（AND）", or: "任一满足（OR）", fields: { source: "来源", type: "类型", name: "名称", reviewed: "审阅状态" }, operators: { contains: "包含", equals: "等于" }, save: "保存搜索", saved: "已保存搜索", searchName: "搜索名称", family: "包含父邮件及附件", direct: "直接命中", related: "关联带入", coverage: "索引覆盖", directCount: "直接命中", relatedCount: "关联带入", results: "当前结果", allFolders: "所有来源", folders: "来源文件夹", syntax: "检索式不完整：请检查运算符及双引号。本版不支持括号和邻近语法。", view: "默认文档视图", viewHint: "固定列表列；本版不开放 View 编辑器或统计看板。", bulk: "批量标注", bulkHint: "仅修改当前选中的文档；保留其他字段。", sort: "排序", sorts: { id: "编号升序", name: "名称升序", date: "日期降序" }, select: "选择文档", selectPage: "选择本页", export: "将所选加入交付", dateFrom: "开始日期", dateTo: "结束日期", nameRequired: "请输入搜索名称。", reviewed: "已审阅", unreviewed: "未审阅", noSelected: "请先选择至少一份文档。", countLabel: "份" },
+  review: { zoomLevels: ["90%", "100%", "120%"], responsive: "相关性", confidential: "保密性", issues: "议题", notes: "备注", saveNext: "保存并下一份", previous: "沿用上一份标注", noPrevious: "没有可沿用的上一份记录。", previousApplied: "已填入允许复制的字段，请核对后保存。", family: "关联文档", history: "审阅修改历史", before: "修改前", after: "修改后", noDoc: "请先从文档列表打开一份文档。", back: "返回结果列表", find: "文档内查找", match: "处命中", zoom: "缩放", end: "已保存，当前范围已到最后一份。", dirty: "有未保存的修改。离开后将丢失，是否继续？", conflict: "另一窗口已修改数据。请刷新后重试，避免覆盖。", loading: "文档不可用或不属于当前项目。", downloadText: "下载当前文本", copyHint: "只复制表单配置中允许沿用的字段。" },
+  analytics: { index: "默认全文索引", refresh: "更新索引", last: "最近更新时间", run: "运行示例分析", sample: "邮件链 / 近似分组为预设样本结果，不对上传文件运行真实分析算法。", thread: "邮件链", similar: "近似文档组", language: "语言分布", group: "分组", show: "查看组内文档", important: "重点邮件", noGroup: "未分组", other: "用户文本（未分析）", languages: { zh: "中文", en: "英文", unknown: "未分析" }, criteria: "范围：本项目已发布文档；字段：提取文本；维护由系统承担。" },
+  export: { draft: "本次交付", choose: "选择交付范围", all: "全部已审阅文档", selected: "从列表选中的文档", freeze: "冻结本次文档集合", frozen: "已冻结", check: "交付前检查", build: "制作并下载", meta: "元数据 CSV", text: "提取文本 TXT", hint: "本版可生成真实 ZIP 示例交付包（文本、元数据及 manifest）。不输出原件、Bates、PDF、load file 或遮盖结果。", blocked: "交付被阻断：范围为空、含未审阅/保密文档或未发布文档。请调整范围。", changed: "冻结后文档内容或标注发生变化，请重新冻结并检查。", passed: "检查通过，可以制作。", format: "至少选择一种输出。", history: "交付历史", version: "交付版本", again: "重新制作", empty: "尚未冻结文档范围。", manifest: "manifest.json", filename: "FACT-MVP", formatNote: "prototype-text-package; no native files, images, redactions or load files", snapshotNote: "下载历史版本保留当时的文档和标注；重新制作需重新检查当前版本。" },
+  settings: { project: "工作区名称", client: "客户", matter: "事项", newProject: "新建工作区", admin: "项目管理员", member: "成员姓名", email: "邮箱", role: "角色组", newMember: "添加成员", lastAdmin: "至少保留一名启用的管理员。", form: "审阅表单名称", addField: "新增议题字段", label: "字段名称", options: "选项（逗号分隔）", required: "必填", visible: "显示", readOnly: "只读", copyable: "允许沿用", preview: "预览表单", fieldHint: "仅保留固定排列的表单及一层选项。项目配置直接应用到审阅页；停用选项保留历史值。", fieldType: "字段类型", choice: "多选", text: "文本", single: "单选", rule: "处理方案", ruleValue: "基础文本处理", timezone: "时区", timezoneValue: "Asia/Shanghai", dedup: "去重方式", parents: "保留直接父子关系", ruleHint: "处理规则由内部维护，本版展示有效规则；不提供规则编辑器。", backup: "下载项目备份", restore: "导入项目备份", restoreConfirm: "恢复将替换当前浏览器的全部 MVP 数据，是否继续？", invalidBackup: "备份结构无效，未修改现有数据。", restored: "已恢复备份。", backupHint: "备份包含本浏览器的全部项目、标注、审阅配置与任务。真实服务端备份、认证和权限仍需开发。", audit: "关键操作记录", active: "启用状态", protect: "相关性、保密性字段是交付检查的依据，保留显示与可编辑；其他字段可设置只读和隐藏。", adminHint: "三种预设角色组，无逐对象权限矩阵、模板复制或自由布局。" },
+  audit: { project: "项目资料保存", member: "成员更新", fields: "字段与表单更新", review: "审阅保存", bulk: "批量标注", search: "保存搜索", export: "制作交付", restore: "备份恢复" },
+  seed: { project: "马克欺诈项目", client: "Close AI Ltd.", matter: "高管马克欺诈调查", project2: "供应商合同项目", client2: "示例采购公司", matter2: "年度采购审查", admin: "林然", email: "linran@example.test", reviewer: "周宁", reviewerEmail: "zhouning@example.test", form: "基础审阅表单", issues: ["资金流向", "合同异常", "信息披露"], date: "2026-09-20", threadA: "投资款往来", similarA: "投资安排附件", threadB: "供应商沟通", langZh: "zh", langEn: "en", docs: [
+    { id: "DOC-0001", name: "关于投资款安排.eml", type: "Email", source: "邮箱 / 马克", family: "F-01", parent: "", thread: "投资款往来", similar: "", language: "zh", date: "2026-09-18", content: "发件人：马克\n收件人：林然\n主题：关于投资款安排\n\n请核对本季度的投资款和收款账户。附件中有合同草案。投资项目尚待董事会审批，请勿提前披露。\n\nMark: the investment agreement requires approval." },
+    { id: "DOC-0002", name: "投资协议草案.txt", type: "Text", source: "邮箱 / 马克", family: "F-01", parent: "DOC-0001", thread: "", similar: "投资安排附件", language: "zh", date: "2026-09-18", content: "投资协议草案\n\n投资款共计一百万元，用于项目设备采购。收款账户应与合同主体一致。付款前需要财务和项目负责人批准。" },
+    { id: "DOC-0003", name: "回复：投资款安排.eml", type: "Email", source: "邮箱 / 林然", family: "F-02", parent: "", thread: "投资款往来", similar: "", language: "zh", date: "2026-09-19", content: "发件人：林然\n主题：回复：投资款安排\n\n已核对投资款，发现账户名称与供应商不一致，需要补充说明。\n\n原邮件：请核对本季度的投资款和收款账户。" },
+    { id: "DOC-0004", name: "投资协议修订.txt", type: "Text", source: "邮箱 / 林然", family: "F-02", parent: "DOC-0003", thread: "", similar: "投资安排附件", language: "zh", date: "2026-09-19", content: "投资协议修订稿\n\n投资款共计一百万元，用于项目设备采购。收款账户须经供应商书面确认。付款前需要财务和董事会批准。" },
+    { id: "DOC-0005", name: "Supplier meeting.eml", type: "Email", source: "邮箱 / 采购", family: "F-03", parent: "", thread: "供应商沟通", similar: "", language: "en", date: "2026-09-20", content: "Subject: Supplier meeting\n\nPlease review the supplier contract and payment terms. The meeting will take place next Monday. No investment decision has been made." },
+    { id: "DOC-0006", name: "会议纪要.txt", type: "Text", source: "邮箱 / 采购", family: "F-03", parent: "DOC-0005", thread: "", similar: "", language: "zh", date: "2026-09-20", content: "会议纪要\n\n采购部需重新确认供应商报价。此次讨论不涉及项目融资。" },
+    { id: "DOC-0007", name: "投资协议备份.txt", type: "Text", source: "共享目录", family: "F-04", parent: "", thread: "", similar: "投资安排附件", language: "zh", date: "2026-09-20", content: "投资协议草案\n\n投资款共计一百万元，用于项目设备采购。收款账户应与合同主体一致。付款前需要财务和项目负责人批准。" },
+    { id: "DOC-0008", name: "待修复附件.txt", type: "Text", source: "共享目录", family: "F-05", parent: "", thread: "", similar: "", language: "zh", date: "2026-09-20", content: "修复后的附件内容：补充合同需要项目负责人审批。" },
+  ] },
+} as const;
+
+export const mvpScope = [
+  {
+    "id": "FACT-ADM-01",
+    "name": "客户档案",
+    "priority": "M1"
+  },
+  {
+    "id": "FACT-ADM-02",
+    "name": "项目事项",
+    "priority": "M0"
+  },
+  {
+    "id": "FACT-ADM-03",
+    "name": "项目工作区",
+    "priority": "M0"
+  },
+  {
+    "id": "FACT-ADM-05",
+    "name": "成员账户管理",
+    "priority": "M0"
+  },
+  {
+    "id": "FACT-ADM-06",
+    "name": "项目角色组与成员",
+    "priority": "M0"
+  },
+  {
+    "id": "FACT-ADM-07",
+    "name": "基础角色授权",
+    "priority": "M0"
+  },
+  {
+    "id": "FACT-ADM-09",
+    "name": "角色视角预览",
+    "priority": "M1"
+  },
+  {
+    "id": "FACT-ADM-10",
+    "name": "项目管理员指定",
+    "priority": "M1"
+  },
+  {
+    "id": "FACT-CFG-01",
+    "name": "审阅字段定义",
+    "priority": "M0"
+  },
+  {
+    "id": "FACT-CFG-02",
+    "name": "议题选项维护",
+    "priority": "M0"
+  },
+  {
+    "id": "FACT-CFG-06",
+    "name": "审阅表单管理",
+    "priority": "M1"
+  },
+  {
+    "id": "FACT-CFG-08",
+    "name": "字段显示与只读规则",
+    "priority": "M0"
+  },
+  {
+    "id": "FACT-CFG-11",
+    "name": "表单预览",
+    "priority": "M1"
+  },
+  {
+    "id": "FACT-CFG-12",
+    "name": "表单接入审阅面板",
+    "priority": "M0"
+  },
+  {
+    "id": "FACT-CFG-13",
+    "name": "允许复制的字段配置",
+    "priority": "M1"
+  },
+  {
+    "id": "FACT-ING-01",
+    "name": "原始文件导入",
+    "priority": "M0"
+  },
+  {
+    "id": "FACT-ING-03",
+    "name": "数据源与处理批次",
+    "priority": "M0"
+  },
+  {
+    "id": "FACT-ING-04",
+    "name": "处理规则设置",
+    "priority": "M0"
+  },
+  {
+    "id": "FACT-ING-05",
+    "name": "导入前盘点",
+    "priority": "M1"
+  },
+  {
+    "id": "FACT-ING-06",
+    "name": "文件识别与内容提取",
+    "priority": "M0"
+  },
+  {
+    "id": "FACT-ING-07",
+    "name": "附件展开与父子关系",
+    "priority": "M0"
+  },
+  {
+    "id": "FACT-ING-08",
+    "name": "完全重复识别",
+    "priority": "M0"
+  },
+  {
+    "id": "FACT-ING-09",
+    "name": "处理结果发布",
+    "priority": "M0"
+  },
+  {
+    "id": "FACT-ING-10",
+    "name": "处理异常定位",
+    "priority": "M0"
+  },
+  {
+    "id": "FACT-ING-11",
+    "name": "修复后重试",
+    "priority": "M0"
+  },
+  {
+    "id": "FACT-ING-13",
+    "name": "处理结果对账",
+    "priority": "M0"
+  },
+  {
+    "id": "FACT-DOC-01",
+    "name": "文档总清单",
+    "priority": "M0"
+  },
+  {
+    "id": "FACT-DOC-02",
+    "name": "文件夹浏览",
+    "priority": "M1"
+  },
+  {
+    "id": "FACT-DOC-03",
+    "name": "关键词与字段查询",
+    "priority": "M0"
+  },
+  {
+    "id": "FACT-DOC-04",
+    "name": "组合条件编辑",
+    "priority": "M1"
+  },
+  {
+    "id": "FACT-DOC-05",
+    "name": "搜索方案保存",
+    "priority": "M1"
+  },
+  {
+    "id": "FACT-DOC-06",
+    "name": "连同附件和父邮件查看",
+    "priority": "M0"
+  },
+  {
+    "id": "FACT-DOC-07",
+    "name": "文档批量标注",
+    "priority": "M1"
+  },
+  {
+    "id": "FACT-DOC-08",
+    "name": "索引覆盖提示",
+    "priority": "M0"
+  },
+  {
+    "id": "FACT-ANA-01",
+    "name": "搜索索引构建与维护",
+    "priority": "M0"
+  },
+  {
+    "id": "FACT-ANA-02",
+    "name": "分析任务组织",
+    "priority": "M1"
+  },
+  {
+    "id": "FACT-ANA-03",
+    "name": "邮件链与重点邮件",
+    "priority": "M1"
+  },
+  {
+    "id": "FACT-ANA-04",
+    "name": "近似文档分组",
+    "priority": "M1"
+  },
+  {
+    "id": "FACT-ANA-05",
+    "name": "文档语言识别",
+    "priority": "M1"
+  },
+  {
+    "id": "FACT-REV-02",
+    "name": "文档内容查看",
+    "priority": "M0"
+  },
+  {
+    "id": "FACT-REV-03",
+    "name": "文档内定位与缩放",
+    "priority": "M0"
+  },
+  {
+    "id": "FACT-REV-04",
+    "name": "审阅结果填写与保存",
+    "priority": "M0"
+  },
+  {
+    "id": "FACT-REV-05",
+    "name": "填写校验",
+    "priority": "M0"
+  },
+  {
+    "id": "FACT-REV-06",
+    "name": "保存并审下一份",
+    "priority": "M0"
+  },
+  {
+    "id": "FACT-REV-07",
+    "name": "沿用上一份标注",
+    "priority": "M1"
+  },
+  {
+    "id": "FACT-REV-08",
+    "name": "关联文档导航",
+    "priority": "M0"
+  },
+  {
+    "id": "FACT-REV-09",
+    "name": "审阅修改记录",
+    "priority": "M0"
+  },
+  {
+    "id": "FACT-EXP-01",
+    "name": "交付文档集合",
+    "priority": "M0"
+  },
+  {
+    "id": "FACT-EXP-03",
+    "name": "输出文件及元数据",
+    "priority": "M0"
+  },
+  {
+    "id": "FACT-EXP-06",
+    "name": "交付前检查与阻断",
+    "priority": "M0"
+  },
+  {
+    "id": "FACT-EXP-07",
+    "name": "制作任务运行",
+    "priority": "M0"
+  },
+  {
+    "id": "FACT-EXP-08",
+    "name": "清单和交付包下载",
+    "priority": "M0"
+  },
+  {
+    "id": "FACT-EXP-09",
+    "name": "交付版本与重新制作",
+    "priority": "M1"
+  },
+  {
+    "id": "FACT-OPS-01",
+    "name": "项目进度概览",
+    "priority": "M1"
+  },
+  {
+    "id": "FACT-OPS-02",
+    "name": "统一任务列表",
+    "priority": "M0"
+  },
+  {
+    "id": "FACT-OPS-03",
+    "name": "任务详情与运行记录",
+    "priority": "M0"
+  },
+  {
+    "id": "FACT-OPS-04",
+    "name": "跨页面状态与真实存储",
+    "priority": "M0"
+  },
+  {
+    "id": "FACT-OPS-05",
+    "name": "关键操作审计与恢复",
+    "priority": "M0"
+  }
+] as const;
